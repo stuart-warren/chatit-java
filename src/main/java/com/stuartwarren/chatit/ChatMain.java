@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014. stuart-warren
- * Last modified: 13/08/14 20:52
+ * Last modified: 14/08/14 19:54
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -38,7 +38,7 @@ public class ChatMain {
         configBuilder.resource(ResourceChat.class)
                 .resource("./src/main/resources")
                 .port(8080)
-                .host("127.0.0.1")
+                .host("0.0.0.0")
                 .initParam("org.atmosphere.websocket.messageContentType","application/json")
                 .initParam("org.atmosphere.websocket.messageMethod", "POST")
                 .initParam("com.sun.jersey.api.json.POJOMappingFeature", "true")

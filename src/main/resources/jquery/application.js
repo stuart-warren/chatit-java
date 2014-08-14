@@ -1,9 +1,9 @@
 $(function () {
     "use strict";
 
-    var content = $('#content');
-    var input = $('#input');
-    var status = $('#status');
+    var content = $(".content");
+    var input = $(".input");
+    var status = $(".status");
     var myName = false;
     var author = null;
     var logged = false;
@@ -44,6 +44,7 @@ $(function () {
             var me = json.author == author;
             var date =  typeof(json.time) == 'string' ? parseInt(json.time) : json.time;
             addMessage(json.author, json.text, me ? 'blue' : 'black', new Date());
+            input.focus()
         }
     };
 
