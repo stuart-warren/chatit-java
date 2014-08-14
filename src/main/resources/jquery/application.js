@@ -1,3 +1,7 @@
+var myAppModule = angular.module('chatIt', ['ui.bootstrap']);
+
+
+
 $(function () {
     "use strict";
 
@@ -44,7 +48,7 @@ $(function () {
             var me = json.author == author;
             var date =  typeof(json.time) == 'string' ? parseInt(json.time) : json.time;
             addMessage(json.author, json.text, me ? 'blue' : 'black', new Date());
-            input.focus()
+            input.focus();
         }
     };
 
@@ -75,9 +79,8 @@ $(function () {
     });
 
     function addMessage(author, message, color, datetime) {
-        content.append('<p><span style="color:' + color + '">' + author + '</span> @ ' +
-            + (datetime.getHours() < 10 ? '0' + datetime.getHours() : datetime.getHours()) + ':'
-            + (datetime.getMinutes() < 10 ? '0' + datetime.getMinutes() : datetime.getMinutes())
-            + ': ' + message + '</p>');
+        content.append('<p><span style="color:' + color + '">' + author +
+        '</span> @ ' + '<time is="relative-time" datetime="' + datetime.toISOString() +
+        '">' + datetime + '</time>: ' + message + '</p>');
     }
 });
