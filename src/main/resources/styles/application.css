@@ -4,3 +4,14 @@
 .nav, .pagination, .carousel, .panel-title a {
 cursor: pointer;
 }
+
+.content {
+background-color: #FFF;
+padding: 5px;
+border: 1px solid #999;
+}
+
+.content-wrapper {
+padding: 15px;
+border: 1px solid #999;
+}

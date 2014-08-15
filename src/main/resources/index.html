@@ -21,9 +21,11 @@
 <script type="text/javascript" src="https://rawgithub.com/Atmosphere/atmosphere-javascript/master/modules/jquery/src/main/webapp/jquery/jquery.atmosphere.js"></script>
 <script type="text/javascript" src="https://rawgithub.com/github/time-elements/v0.4.0/time-elements.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
-<script type="text/javascript" src="angularjs/ui-bootstrap-tpls-0.11.0.min.js"></script>
-<script type="text/javascript" src="jquery/application.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
+<script type="text/javascript" src="https://rawgithub.com/kof/emoticons/master/lib/emoticons.js"></script>
+<script type="text/javascript" src="js/application.js"></script>
 
+<link href="https://rawgithub.com/kof/emoticons/master/support/skype/emoticons.css" rel="stylesheet" type="text/css"/>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <!-- Optional theme -->
@@ -37,7 +39,9 @@
 <body>
 
 <div class="container">
-    <div class="content col-md-8 col-md-offset-2 bg-info"></div>
+	<div class="content-wrapper bg-info col-md-8 col-md-offset-2">
+    	<div class="content"></div>
+    </div>
     <div class="col-md-8 col-md-offset-2">
         <span class="status">Connecting...</span>
         <input type="text" class="input" disabled="disabled"/>
