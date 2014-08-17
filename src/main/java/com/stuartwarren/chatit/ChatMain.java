@@ -34,8 +34,12 @@ public class ChatMain {
     private static final Logger logger = LoggerFactory.getLogger(Nettosphere.class);
 
     public static void main(String[] args) throws IOException {
+
+        String classpath = System.getProperty("java.class.path");
+        logger.debug("CLASSPATH: {}", classpath);
+
         Config.Builder configBuilder = new Config.Builder();
-        configBuilder.resource(ResourceChat.class)
+        configBuilder.resource(ChatRoomManagedService.class)
                 .resource("./src/main/resources")
                 .port(8080)
                 .host("0.0.0.0")
