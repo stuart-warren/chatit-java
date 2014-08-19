@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014. stuart-warren
- * Last modified: 13/08/14 21:17
+ * Last modified: 17/08/14 11:52
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,25 +17,23 @@
 
 package com.stuartwarren.chatit;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Date;
+import org.atmosphere.config.managed.Decoder;
+import org.codehaus.jackson.map.ObjectMapper;
+
+import java.io.IOException;
 
 /**
- * Created by stuart-warren on 13/08/14.
+ * Created by stuart-warren on 17/08/14.
  */
-@XmlRootElement
-public class Response {
+public class ChatProtocolDecoder implements Decoder<String, ChatProtocol> {
 
-    public String text;
-    public String author;
-    public long time;
+    private final ObjectMapper mapper = new ObjectMapper();
 
-    public Response() {}
-
-    public Response(String author, String text) {
-        this.author = author;
-        this.text = text;
-        this.time = new Date().getTime();
+    public ChatProtocol decode(String s) {
+        try {
+            return mapper.readValue(s, ChatProtocol.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
-
 }

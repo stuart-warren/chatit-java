@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014. stuart-warren
- * Last modified: 13/08/14 20:59
+ * Last modified: 17/08/14 11:47
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,31 +17,27 @@
 
 package com.stuartwarren.chatit;
 
-import org.atmosphere.annotation.Broadcast;
-import org.atmosphere.annotation.Suspend;
+import org.atmosphere.config.managed.Encoder;
+import org.codehaus.jackson.map.ObjectMapper;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import java.io.IOException;
 
 /**
- * Created by stuart-warren on 13/08/14.
+ * Created by stuart-warren on 17/08/14.
  */
-@Path("/chat")
-public class ResourceChat {
+public class JacksonEncoder implements Encoder<JacksonEncoder.Encodeable, String> {
 
-    @Suspend(contentType = "application/json")
-    @GET
-    public String suspend() {
-        return "";
+    private final ObjectMapper mapper = new ObjectMapper();
+
+    public String encode(Encodeable encodeable) {
+        try {
+            return mapper.writeValueAsString(encodeable);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    @Broadcast(writeEntity = false)
-    @POST
-    @Produces("application/json")
-    public Response broadcast(Message message) {
-        return new Response(message.author, message.message);
-    }
+    public static interface Encodeable {
 
+    }
 }
