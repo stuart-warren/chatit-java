@@ -37,11 +37,16 @@ public class ChatMain {
 
         String classpath = System.getProperty("java.class.path");
         logger.debug("CLASSPATH: {}", classpath);
-
+        int port;
+        try {
+            port = Integer.valueOf(System.getenv("PORT"));
+        } catch (NumberFormatException e) {
+            port = 8080;
+        }
         Config.Builder configBuilder = new Config.Builder();
         configBuilder.resource(ChatRoomManagedService.class)
                 .resource("./src/main/resources")
-                .port(8080)
+                .port(port)
                 .host("0.0.0.0")
                 .initParam("org.atmosphere.websocket.messageContentType","application/json")
                 .initParam("org.atmosphere.websocket.messageMethod", "POST")
@@ -52,7 +57,7 @@ public class ChatMain {
         server.start();
         String input = "";
 
-        logger.info("Nettosphere Jersey Server started on port {}", 8080);
+        logger.info("Nettosphere Jersey Server started on port {}", port);
         logger.info("Type 'quit` to stop the server");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         while (!(input.equals("quit"))) {
